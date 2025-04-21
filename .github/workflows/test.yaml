@@ -19,6 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd
           curl -L -o /tmp/mlton-2024.tgz https://github.com/MLton/mlton/releases/download/on-20241230-release/mlton-20241230-1.amd64-linux.ubuntu-24.04_glibc2.39.tgz
           tar -xzf /tmp/mlton-2024.tgz -C "$HOME"
           sudo make -C "$HOME/mlton-20241230-1.amd64-linux.ubuntu-24.04_glibc2.39" install
@@ -35,7 +36,13 @@ jobs:
           try --version
 
       - name: Build
-        run: mlton reproduction.sml
+        run: |
+          mv reproduction.sml ~
+          mv reproduction ~
+          cd
+          mlton reproduction.sml
 
       - name: Test
-        run: try ./reproduction
+        run: |
+          cd
+          try ./reproduction
