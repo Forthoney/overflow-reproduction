@@ -37,6 +37,8 @@ jobs:
 
       - name: Build
         run: |
+          mv reproduction.sml ~
+          mv reproduction ~
           cd
           mlton reproduction.sml
 
